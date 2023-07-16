@@ -13,7 +13,7 @@ export const MyProfileInformation = styled.div`
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center   ;
+  align-items: center;
 `;
 
 export const MyProfileTextInformation = styled.div`
@@ -69,7 +69,8 @@ export const MyProfileAvatarWrapper = styled.div`
 `;
 
 export const MyProfileAvatar = styled.img`
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-`
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  background-color: transparent;
+`;

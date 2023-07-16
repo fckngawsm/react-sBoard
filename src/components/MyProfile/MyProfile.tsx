@@ -14,7 +14,12 @@ import {
 } from "./MyProfileStyle";
 import { useAppSelector } from "../../redux-hooks";
 import { authUserSelectors } from "../../features/auth/auth-selectors";
-function MyProfile() {
+
+interface MyProfileProps {
+  onOpen: () => void;
+}
+
+function MyProfile({ onOpen }: MyProfileProps) {
   const currentUser = useAppSelector(authUserSelectors);
   console.log(currentUser);
   return (
@@ -29,7 +34,9 @@ function MyProfile() {
           </MyProfileCountFollowing>
           <MyProfileGroupButtons>
             <MyProfileButton>Удалить аккаунт</MyProfileButton>
-            <MyProfileButton>Редактировать аккаунт</MyProfileButton>
+            <MyProfileButton onClick={onOpen}>
+              Редактировать аккаунт
+            </MyProfileButton>
           </MyProfileGroupButtons>
         </MyProfileTextInformation>
         <MyProfileAvatarInformation>
