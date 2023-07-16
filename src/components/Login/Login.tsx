@@ -16,15 +16,12 @@ import { loginUser } from "../../features/auth/auth-slice";
 function Login() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-  } = useForm<UserType>();
+  const { register, handleSubmit } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
     dispatch(loginUser(data))
       .unwrap()
       .then(() => {
-        navgiate("/profile");
+        navgiate("/my-profile");
       });
   };
   return (

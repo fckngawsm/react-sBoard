@@ -1,5 +1,9 @@
 @import url(../../fonts/montserrat.css);
 
+body {
+  background-color: rgb(240, 240, 240);
+}
+
 .App {
   width: 1280px;
   margin: 0 auto;
