@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import {
   RegisterForm,
   RegisterInput,
@@ -13,13 +14,18 @@ import { useAppDispatch } from "../../redux-hooks";
 import { registerUser } from "../../features/auth/auth-slice";
 function Register() {
   const dispatch = useAppDispatch();
+  const navgiate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    dispatch(registerUser(data));
+    dispatch(registerUser(data))
+      .unwrap()
+      .then(() => {
+        navgiate("/sign-in");
+      });
   };
   return (
     <>
@@ -47,13 +53,13 @@ function Register() {
           type="email"
         />
         <RegisterInput
-          placeholder="Пароль"
-          {...register("password", {
+          placeholder="Почта"
+          {...register("email", {
             required: true,
             minLength: 2,
             maxLength: 40,
           })}
-          type="password"
+          type="email"
         />
         <RegisterButton type="submit">Зарегистрироваться</RegisterButton>
         <RegisterText>

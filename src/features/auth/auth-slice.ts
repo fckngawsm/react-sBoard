@@ -16,7 +16,7 @@ const initialState: AuthInitialState = {
 };
 
 export const registerUser = createAsyncThunk<
-  {},
+  { token: string },
   UserType,
   { extra: Extra; rejectWithValue: string }
 >(
@@ -28,6 +28,28 @@ export const registerUser = createAsyncThunk<
     } catch (error) {
       return rejectWithValue("У вас случилась ошибка");
     }
+  }
+);
+
+export const loginUser = createAsyncThunk<
+  UserType,
+  UserType,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@auth/login",
+  async (dataUser, { extra: { client, api }, rejectWithValue }) => {
+    try {
+      const { data } = await client.post(api.LOGIN_USER, dataUser, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const { token } = data;
+      localStorage.setItem("jwt", token);
+      console.log(data);
+      return data;
+    } catch (error) {}
   }
 );
 
@@ -47,6 +69,10 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state) => {
         state.status = "received";
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        console.log(state.user)
       });
   },
 });
