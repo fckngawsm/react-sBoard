@@ -19,7 +19,6 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
     dispatch(loginUser(data))

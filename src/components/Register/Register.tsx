@@ -15,11 +15,7 @@ import { registerUser } from "../../features/auth/auth-slice";
 function Register() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserType>();
+  const { register, handleSubmit } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
     dispatch(registerUser(data))
       .unwrap()
@@ -53,13 +49,13 @@ function Register() {
           type="email"
         />
         <RegisterInput
-          placeholder="Почта"
-          {...register("email", {
+          placeholder="пароль"
+          {...register("password", {
             required: true,
             minLength: 2,
             maxLength: 40,
           })}
-          type="email"
+          type="password"
         />
         <RegisterButton type="submit">Зарегистрироваться</RegisterButton>
         <RegisterText>
