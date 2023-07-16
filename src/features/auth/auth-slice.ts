@@ -53,10 +53,33 @@ export const loginUser = createAsyncThunk<
   }
 );
 
+export const checkAuth = createAsyncThunk<
+  UserType,
+  string,
+  { extra: Extra; rejectWithValue: string }
+>("@@user-isAuth", async (jwt, { extra: { client, api }, rejectWithValue }) => {
+  try {
+    const res = await client.get(api.CHECK_TOKEN, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    return res.data;
+  } catch (err) {
+    return rejectWithValue("Ошибка");
+  }
+});
+
 const authSlice = createSlice({
   name: "@@auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      state.user = null;
+      localStorage.removeItem("jwt");
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -70,11 +93,12 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state) => {
         state.status = "received";
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(checkAuth.fulfilled, (state, action) => {
         state.user = action.payload;
-        console.log(state.user)
+        console.log(state.user);
       });
   },
 });
 
+export const { logOut } = authSlice.actions;
 export const authReducer = authSlice.reducer;

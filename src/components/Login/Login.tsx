@@ -38,7 +38,7 @@ function Login() {
           type="email"
         />
         <LoginInput
-          placeholder="Почта"
+          placeholder="пароль"
           {...register("password", {
             required: true,
             minLength: 2,

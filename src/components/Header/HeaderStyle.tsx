@@ -12,12 +12,13 @@ export const HeaderWrapper = styled.header`
 export const HeaderLogo = styled.img`
   width: 150px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export const HeaderWrapperLink = styled.div`
   width: 25%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 `;
 
 export const HeaderItemLink = styled(Link)`
@@ -29,4 +30,5 @@ export const HeaderItemLink = styled(Link)`
   border-radius: 100px;
   padding: 5px 15px;
   text-decoration: none;
+  margin-left: 20px;
 `;

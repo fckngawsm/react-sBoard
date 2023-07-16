@@ -12,14 +12,20 @@ import {
   MyProfileTextInformation,
   MyProfileWrapper,
 } from "./MyProfileStyle";
+import { useAppSelector } from "../../redux-hooks";
+import { authUserSelectors } from "../../features/auth/auth-selectors";
 function MyProfile() {
+  const currentUser = useAppSelector(authUserSelectors);
+  console.log(currentUser);
   return (
     <MyProfileWrapper>
       <MyProfileInformation>
         <MyProfileTextInformation>
-          <MyProfileName>Марченко Кирилл</MyProfileName>
+          <MyProfileName>
+            {currentUser?.name} {currentUser?.lastName}
+          </MyProfileName>
           <MyProfileCountFollowing>
-            <MyPrfileSpan>0 </MyPrfileSpan> публикаций
+            <MyPrfileSpan>0</MyPrfileSpan> публикаций
           </MyProfileCountFollowing>
           <MyProfileGroupButtons>
             <MyProfileButton>Удалить аккаунт</MyProfileButton>
@@ -28,7 +34,7 @@ function MyProfile() {
         </MyProfileTextInformation>
         <MyProfileAvatarInformation>
           <MyProfileAvatarWrapper>
-            <MyProfileAvatar src="https://cdn.dribbble.com/users/2313212/screenshots/11256142/media/27b57b3ee2ac221dc8c616d02161d96b.jpg?resize=400x0" />
+            <MyProfileAvatar src={currentUser?.avatar} />
           </MyProfileAvatarWrapper>
         </MyProfileAvatarInformation>
       </MyProfileInformation>

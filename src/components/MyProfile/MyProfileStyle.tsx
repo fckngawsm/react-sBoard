@@ -69,7 +69,7 @@ export const MyProfileAvatarWrapper = styled.div`
 `;
 
 export const MyProfileAvatar = styled.img`
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
 `
