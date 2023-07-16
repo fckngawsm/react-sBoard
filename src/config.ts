@@ -1,1 +1,1 @@
-export {}
+export const REGISTER_USER = "http://localhost:5555/auth/sign-up"
