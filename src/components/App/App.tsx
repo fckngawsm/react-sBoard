@@ -7,6 +7,7 @@ import Login from "../Login/Login";
 import MyProfile from "../MyProfile/MyProfile";
 import { useAppDispatch } from "../../redux-hooks";
 import { checkAuth } from "../../features/auth/auth-slice";
+import PrivateRoute from "../ProtectedRoute";
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -21,7 +22,10 @@ function App() {
       <Routes>
         <Route path="/sign-up" element={<Register />} />
         <Route path="/sign-in" element={<Login />} />
-        <Route path="/my-profile" element={<MyProfile />} />
+        <Route
+          path="/my-profile"
+          element={<PrivateRoute component={MyProfile} />}
+        />
       </Routes>
     </div>
   );
