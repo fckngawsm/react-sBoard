@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import axios from "axios";
 import * as api from "./config";
-import { authReducer } from "./features/auth/auth-slice";
+import { authReducer } from "./features/auth/user-slice";
 
 export const store = configureStore({
   reducer: {

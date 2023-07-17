@@ -11,7 +11,7 @@ import {
 } from "./LoginStyle";
 import { UserType } from "../../types/User";
 import { useAppDispatch } from "../../redux-hooks";
-import { loginUser } from "../../features/auth/auth-slice";
+import { loginUser } from "../../features/auth/user-slice";
 
 function Login() {
   const dispatch = useAppDispatch();

@@ -72,6 +72,30 @@ export const checkAuth = createAsyncThunk<
   }
 });
 
+export const updateUser = createAsyncThunk<
+  UserType,
+  UserType,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@user/update",
+  async (data, { extra: { client, api }, rejectWithValue }) => {
+    const jwt = localStorage.getItem("jwt");
+    try {
+      const res = await client.patch(api.UPDATE_USER, data, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${jwt}`,
+        },
+      });
+
+      return res.data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "@@auth",
   initialState,
@@ -99,6 +123,10 @@ const authSlice = createSlice({
         state.status = "received";
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = "received";
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.status = "received";
       });

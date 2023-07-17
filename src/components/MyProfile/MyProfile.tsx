@@ -13,7 +13,7 @@ import {
   MyProfileWrapper,
 } from "./MyProfileStyle";
 import { useAppSelector } from "../../redux-hooks";
-import { authUserSelectors } from "../../features/auth/auth-selectors";
+import { authUserSelectors } from "../../features/auth/user-selectors";
 
 interface MyProfileProps {
   onOpen: () => void;

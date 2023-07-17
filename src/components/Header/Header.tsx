@@ -8,9 +8,9 @@ import {
   HeaderWrapperLink,
 } from "./HeaderStyle";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
-import { authUserSelectors } from "../../features/auth/auth-selectors";
-import { logOut } from "../../features/auth/auth-slice";
-import { checkAuth } from "../../features/auth/auth-slice";
+import { authUserSelectors } from "../../features/auth/user-selectors";
+import { logOut } from "../../features/auth/user-slice";
+import { checkAuth } from "../../features/auth/user-slice";
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -20,7 +20,6 @@ function Header() {
     dispatch(logOut());
   };
   const jwt = localStorage.getItem("jwt");
-  console.log(jwt);
   useEffect(() => {
     if (jwt) {
       dispatch(checkAuth(jwt));

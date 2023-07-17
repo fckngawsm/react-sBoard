@@ -11,7 +11,7 @@ import {
 } from "./RegisterStyle";
 import { UserType } from "../../types/User";
 import { useAppDispatch } from "../../redux-hooks";
-import { registerUser } from "../../features/auth/auth-slice";
+import { registerUser } from "../../features/auth/user-slice";
 function Register() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();

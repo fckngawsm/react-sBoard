@@ -3,7 +3,6 @@ export type UserType = {
   name: string;
   lastName: string;
   avatar: string;
-  email: string;
-  password: string;
-  token?: string;
+  readonly email: string;
+  readonly password: string;
 };
