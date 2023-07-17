@@ -22,7 +22,7 @@ function Login() {
       .unwrap()
       .then(() => {
         navgiate("/my-profile");
-      });
+      })
   };
   return (
     <>

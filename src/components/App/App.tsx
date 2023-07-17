@@ -5,18 +5,10 @@ import Register from "../Register/Register";
 import "./App.css";
 import Login from "../Login/Login";
 import MyProfile from "../MyProfile/MyProfile";
-import { useAppDispatch } from "../../redux-hooks";
-import { checkAuth } from "../../features/auth/auth-slice";
+
 import PopupEditAccount from "../PopupEditAccount/PopupEditAccount";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      dispatch(checkAuth(jwt));
-    }
-  }, [dispatch]);
   function handleClosePopup() {
     setIsOpen(!isOpen);
   }

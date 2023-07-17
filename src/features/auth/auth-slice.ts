@@ -47,9 +47,10 @@ export const loginUser = createAsyncThunk<
       });
       const { token } = data;
       localStorage.setItem("jwt", token);
-      console.log(data);
       return data;
-    } catch (error) {}
+    } catch (error) {
+      rejectWithValue("err");
+    }
   }
 );
 
@@ -93,9 +94,13 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state) => {
         state.status = "received";
       })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = "received";
+      })
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.user = action.payload;
-        console.log(state.user);
+        state.status = "received";
       });
   },
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../images/logo.svg";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,6 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { authUserSelectors } from "../../features/auth/auth-selectors";
 import { logOut } from "../../features/auth/auth-slice";
+import { checkAuth } from "../../features/auth/auth-slice";
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,13 @@ function Header() {
   const handleLogOut = () => {
     dispatch(logOut());
   };
+  const jwt = localStorage.getItem("jwt");
+  console.log(jwt);
+  useEffect(() => {
+    if (jwt) {
+      dispatch(checkAuth(jwt));
+    }
+  }, [dispatch, jwt]);
   return (
     <HeaderWrapper>
       <HeaderLogo

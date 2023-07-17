@@ -20,14 +20,14 @@ interface MyProfileProps {
 }
 
 function MyProfile({ onOpen }: MyProfileProps) {
-  const currentUser = useAppSelector(authUserSelectors);
-  console.log(currentUser);
+  const user = useAppSelector(authUserSelectors);
+  console.log(user)
   return (
     <MyProfileWrapper>
       <MyProfileInformation>
         <MyProfileTextInformation>
           <MyProfileName>
-            {currentUser?.name} {currentUser?.lastName}
+            {user?.name} {user?.lastName}
           </MyProfileName>
           <MyProfileCountFollowing>
             <MyPrfileSpan>0</MyPrfileSpan> публикаций
@@ -41,7 +41,7 @@ function MyProfile({ onOpen }: MyProfileProps) {
         </MyProfileTextInformation>
         <MyProfileAvatarInformation>
           <MyProfileAvatarWrapper>
-            <MyProfileAvatar src={currentUser?.avatar} />
+            <MyProfileAvatar src={user?.avatar} />
           </MyProfileAvatarWrapper>
         </MyProfileAvatarInformation>
       </MyProfileInformation>
