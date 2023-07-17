@@ -64,13 +64,10 @@ export const MyProfileButton = styled.button`
   }
 `;
 
-export const MyProfileAvatarWrapper = styled.div`
-  border-radius: 50%;
-`;
-
 export const MyProfileAvatar = styled.img`
   width: 180px;
   height: 180px;
   object-fit: cover;
   background-color: transparent;
+  border-radius: 50%;
 `;

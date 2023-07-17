@@ -3,7 +3,6 @@ import {
   MyPrfileSpan,
   MyProfileAvatar,
   MyProfileAvatarInformation,
-  MyProfileAvatarWrapper,
   MyProfileButton,
   MyProfileCountFollowing,
   MyProfileGroupButtons,
@@ -40,9 +39,7 @@ function MyProfile({ onOpen }: MyProfileProps) {
           </MyProfileGroupButtons>
         </MyProfileTextInformation>
         <MyProfileAvatarInformation>
-          <MyProfileAvatarWrapper>
             <MyProfileAvatar src={user?.avatar} />
-          </MyProfileAvatarWrapper>
         </MyProfileAvatarInformation>
       </MyProfileInformation>
     </MyProfileWrapper>

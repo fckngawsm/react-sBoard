@@ -12,10 +12,8 @@ import {
 } from "./PopupEditAccountStyle";
 import { UserType } from "../../types/User";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/user-slice";
-import { useAppDispatch, useAppSelector } from "../../redux-hooks";
-import { authUserSelectors } from "../../features/auth/user-selectors";
+import { useAppDispatch } from "../../redux-hooks";
 
 interface PopupProps {
   onClose: () => void;
@@ -26,7 +24,9 @@ function PopupEditAccount({ onClose, isOpen }: PopupProps) {
   const disptach = useAppDispatch();
   const { register, handleSubmit } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    disptach(updateUser(data));
+    disptach(updateUser(data))
+      .unwrap()
+      .then(() => onClose());
   };
   return (
     <PopupWrapper style={{ visibility: `${isOpen ? "visible" : "hidden"}` }}>
