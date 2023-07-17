@@ -13,8 +13,9 @@ import {
 } from "./MyProfileStyle";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { authUserSelectors } from "../../features/user/user-selectors";
-import { deleteAccount, logOut } from "../../features/user/user-slice";
+import { deleteAccount } from "../../features/user/user-slice";
 import { useNavigate } from "react-router-dom";
+import Publications from "../Publications/Publications";
 
 interface MyProfileProps {
   onOpen: () => void;
@@ -32,29 +33,32 @@ function MyProfile({ onOpen }: MyProfileProps) {
       });
   }
   return (
-    <MyProfileWrapper>
-      <MyProfileInformation>
-        <MyProfileTextInformation>
-          <MyProfileName>
-            {user?.name} {user?.lastName}
-          </MyProfileName>
-          <MyProfileCountFollowing>
-            <MyPrfileSpan>0</MyPrfileSpan> публикаций
-          </MyProfileCountFollowing>
-          <MyProfileGroupButtons>
-            <MyProfileButton onClick={handleDeleteAccount}>
-              Удалить аккаунт
-            </MyProfileButton>
-            <MyProfileButton onClick={onOpen}>
-              Редактировать аккаунт
-            </MyProfileButton>
-          </MyProfileGroupButtons>
-        </MyProfileTextInformation>
-        <MyProfileAvatarInformation>
-          <MyProfileAvatar src={user?.avatar} />
-        </MyProfileAvatarInformation>
-      </MyProfileInformation>
-    </MyProfileWrapper>
+    <>
+      <MyProfileWrapper>
+        <MyProfileInformation>
+          <MyProfileTextInformation>
+            <MyProfileName>
+              {user?.name} {user?.lastName}
+            </MyProfileName>
+            <MyProfileCountFollowing>
+              <MyPrfileSpan>0</MyPrfileSpan> публикаций
+            </MyProfileCountFollowing>
+            <MyProfileGroupButtons>
+              <MyProfileButton onClick={handleDeleteAccount}>
+                Удалить аккаунт
+              </MyProfileButton>
+              <MyProfileButton onClick={onOpen}>
+                Редактировать аккаунт
+              </MyProfileButton>
+            </MyProfileGroupButtons>
+          </MyProfileTextInformation>
+          <MyProfileAvatarInformation>
+            <MyProfileAvatar src={user?.avatar} />
+          </MyProfileAvatarInformation>
+        </MyProfileInformation>
+      </MyProfileWrapper>
+      <Publications />
+    </>
   );
 }
 

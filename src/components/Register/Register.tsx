@@ -13,7 +13,6 @@ import {
 import { UserType } from "../../types/User";
 import { useAppDispatch } from "../../redux-hooks";
 import { registerUser } from "../../features/user/user-slice";
-import { ErrorMessage } from "@hookform/error-message";
 
 function Register() {
   const dispatch = useAppDispatch();
