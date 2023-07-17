@@ -96,8 +96,29 @@ export const updateUser = createAsyncThunk<
   }
 );
 
-const authSlice = createSlice({
-  name: "@@auth",
+export const deleteAccount = createAsyncThunk<
+  UserType,
+  undefined,
+  { extra: Extra; rejectWithValue: string }
+>("@@user/delete", async (_, { extra: { client, api }, rejectWithValue }) => {
+  const jwt = localStorage.getItem("jwt");
+  try {
+    const res = await client.delete(api.DELETE_USER, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${jwt}`,
+      },
+    });
+
+    return res.data;
+  } catch (err) {
+    return rejectWithValue("Ошибка");
+  }
+});
+
+const userSlice = createSlice({
+  name: "@@user",
   initialState,
   reducers: {
     logOut: (state) => {
@@ -129,9 +150,13 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.status = "received";
+      })
+      .addCase(deleteAccount.fulfilled, (state) => {
+        state.user = null;
+        state.status = "received";
       });
   },
 });
 
-export const { logOut } = authSlice.actions;
-export const authReducer = authSlice.reducer;
+export const { logOut } = userSlice.actions;
+export const userReducer = userSlice.reducer;

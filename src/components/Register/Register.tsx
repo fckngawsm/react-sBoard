@@ -11,7 +11,7 @@ import {
 } from "./RegisterStyle";
 import { UserType } from "../../types/User";
 import { useAppDispatch } from "../../redux-hooks";
-import { registerUser } from "../../features/auth/user-slice";
+import { registerUser } from "../../features/user/user-slice";
 function Register() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();
@@ -21,7 +21,10 @@ function Register() {
       .unwrap()
       .then(() => {
         navgiate("/sign-in");
-      });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
   return (
     <>

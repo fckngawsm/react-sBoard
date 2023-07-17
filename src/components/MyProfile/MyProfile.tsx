@@ -11,16 +11,27 @@ import {
   MyProfileTextInformation,
   MyProfileWrapper,
 } from "./MyProfileStyle";
-import { useAppSelector } from "../../redux-hooks";
-import { authUserSelectors } from "../../features/auth/user-selectors";
+import { useAppDispatch, useAppSelector } from "../../redux-hooks";
+import { authUserSelectors } from "../../features/user/user-selectors";
+import { deleteAccount, logOut } from "../../features/user/user-slice";
+import { useNavigate } from "react-router-dom";
 
 interface MyProfileProps {
   onOpen: () => void;
 }
 
 function MyProfile({ onOpen }: MyProfileProps) {
+  const dispatch = useAppDispatch();
   const user = useAppSelector(authUserSelectors);
-  console.log(user)
+  const navigate = useNavigate();
+  function handleDeleteAccount() {
+    dispatch(deleteAccount())
+      .unwrap()
+      .then(() => {
+        dispatch(logOut());
+        navigate("/sign-up");
+      });
+  }
   return (
     <MyProfileWrapper>
       <MyProfileInformation>
@@ -32,14 +43,16 @@ function MyProfile({ onOpen }: MyProfileProps) {
             <MyPrfileSpan>0</MyPrfileSpan> публикаций
           </MyProfileCountFollowing>
           <MyProfileGroupButtons>
-            <MyProfileButton>Удалить аккаунт</MyProfileButton>
+            <MyProfileButton onClick={handleDeleteAccount}>
+              Удалить аккаунт
+            </MyProfileButton>
             <MyProfileButton onClick={onOpen}>
               Редактировать аккаунт
             </MyProfileButton>
           </MyProfileGroupButtons>
         </MyProfileTextInformation>
         <MyProfileAvatarInformation>
-            <MyProfileAvatar src={user?.avatar} />
+          <MyProfileAvatar src={user?.avatar} />
         </MyProfileAvatarInformation>
       </MyProfileInformation>
     </MyProfileWrapper>

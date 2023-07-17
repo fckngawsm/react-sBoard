@@ -8,9 +8,9 @@ import {
   HeaderWrapperLink,
 } from "./HeaderStyle";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
-import { authUserSelectors } from "../../features/auth/user-selectors";
-import { logOut } from "../../features/auth/user-slice";
-import { checkAuth } from "../../features/auth/user-slice";
+import { authUserSelectors } from "../../features/user/user-selectors";
+import { logOut } from "../../features/user/user-slice";
+import { checkAuth } from "../../features/user/user-slice";
 
 function Header() {
   const dispatch = useAppDispatch();

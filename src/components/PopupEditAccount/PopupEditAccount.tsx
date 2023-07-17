@@ -12,7 +12,7 @@ import {
 } from "./PopupEditAccountStyle";
 import { UserType } from "../../types/User";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { updateUser } from "../../features/auth/user-slice";
+import { updateUser } from "../../features/user/user-slice";
 import { useAppDispatch } from "../../redux-hooks";
 
 interface PopupProps {

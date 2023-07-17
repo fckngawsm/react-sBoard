@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import axios from "axios";
 import * as api from "./config";
-import { authReducer } from "./features/auth/user-slice";
+import { userReducer } from "./features/user/user-slice";
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    user: userReducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
