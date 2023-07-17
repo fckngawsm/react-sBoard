@@ -28,7 +28,6 @@ function MyProfile({ onOpen }: MyProfileProps) {
     dispatch(deleteAccount())
       .unwrap()
       .then(() => {
-        dispatch(logOut());
         navigate("/sign-up");
       });
   }

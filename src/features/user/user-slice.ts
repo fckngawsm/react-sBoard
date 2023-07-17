@@ -154,6 +154,7 @@ const userSlice = createSlice({
       .addCase(deleteAccount.fulfilled, (state) => {
         state.user = null;
         state.status = "received";
+        localStorage.removeItem("jwt");
       });
   },
 });

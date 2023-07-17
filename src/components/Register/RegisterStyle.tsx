@@ -48,3 +48,9 @@ export const RegisterSpan = styled(Link)`
   margin-left: 5px;
   color: rgb(79, 79, 79);
 `;
+
+export const RegisterMessageError = styled.p`
+  margin-top:-5px;
+  color:red;
+  font-size: 14px;
+`
