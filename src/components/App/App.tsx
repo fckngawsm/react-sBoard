@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Register from "../Register/Register";
@@ -30,10 +30,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route
-          path="/my-profile"
-          element={<MyProfile onOpen={handleOpenPopup} />}
-        /> */}
       </Routes>
       <PopupEditAccount isOpen={isOpen} onClose={handleClosePopup} />
     </div>
